@@ -1,0 +1,66 @@
+<html>
+<head>
+</head>
+<body>
+
+<center><h1>Show Answers</h1></center>
+
+
+
+<br>
+<% @results = Attemptsurvey.where(:user_id => current_user.id ) %>
+
+<table  class="table table-striped table-bordered" cellspacing="0" width="100%">
+  <tr>
+    <th>Question No.</th>
+    <th>Question Text</th>
+    <th>Answer</th>
+  </tr>
+
+  <% sr_no=0 %>
+
+<% @results.each  do |result| %>
+  
+<tr>
+    <% sr_no+=1 %>
+    <% if result.question.q_type == "checkbox" %>
+      <td><strong><%= sr_no %></strong></td>
+      <td><strong><%= result.question.q_text %></strong></td>
+
+
+        <% checkbox_array=result.answer.split('\n') %>
+
+        
+        <td>
+        <% checkbox_array.each do |checkbox_ans| %>
+
+          <% if checkbox_ans.empty? %>
+
+              <% else %>
+
+            <% if checkbox_ans == checkbox_array.last %>
+
+              <%= checkbox_ans %>
+            <% else %>
+
+            <%= checkbox_ans %>,  
+            <% end %>
+          <% end %>
+        <% end %>
+        </td>
+      <% else %>
+        <td><strong><%= sr_no %></strong></td>
+        <td><strong><%= result.question.q_text %></strong></td>
+        <td><%= result.answer %></td>
+      <% end %> 
+    </tr>
+  <%  end %>
+</table>  
+
+<%= link_to surveys_path, class: 'col-lg-2 col-lg-offset-4 btn btn-info' do %>
+  <i class="glyphicon glyphicon-ok-circle"></i> Finish
+<% end %>
+
+<br><br><br>
+</body>
+<html>

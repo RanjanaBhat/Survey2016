@@ -1,0 +1,13 @@
+.jumbotron
+{
+  	text-align:center;
+    padding:50px;
+	color: black;
+	min-height: 50px;
+	background-image: url(background1.jpg);
+}
+#hindex
+{
+	padding: 50px;
+	background-color: lightgrey ;
+}

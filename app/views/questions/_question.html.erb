@@ -1,0 +1,21 @@
+<% @questions.each do |question| %>
+  
+      <strong><%= question.q_position%>. <%= question.q_text %></strong><br/>
+
+        <% options=question.answer_option.split('\n') %>
+        <% options_size = options.size %>
+        <% if question.q_type=='select'%> 
+          <%= select_tag :question, options_for_select(options), {:prompt => "--Select--"} %><br/>
+        <% end %>
+          <% for i in 0...options_size %>
+          <% if question.q_type=='radio' %>
+            <%= radio_button_tag(:q2, question.q_text) %> <%= options[i] %><br/>
+            <%elsif question.q_type=='checkbox'%>
+              <%= check_box_tag(:q2, question.q_text) %> <%= options[i] %><br/>
+                <%elsif question.q_type=='desc'%> 
+                  <%= raw text_area(:q2," ", :rows => '5') %> <br/>
+            <%#= options[i] %> 
+          <% end %>
+          <% end %>
+<br>
+         <% end %>
