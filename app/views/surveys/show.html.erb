@@ -1,20 +1,16 @@
 <h1>Results</h1>
-
 <html>
 <head>
-
   </head>
   <body>
 <table id="tab" class="table table-striped table-bordered" cellspacing="0" width="100%">
 <tr>
-	<th>Sr. No.</th>
-	<th>Question</th>
+	<th>Question Statement</th>
 	<th>Answers</th>
 	<th>Count</th>
+	<th>Answered by_Count</th>
 </tr>
-
-
-<% sr_no=0 %>
+<%# sr_no=0 %>
 <% @question_results.map(&:question).uniq.each do |q| %>
 	<tr>
 		<td>
@@ -52,7 +48,10 @@
  				<% checkbox_array.uniq.each do |checkbox_ans| %>
  					<%= checkbox_array.count(checkbox_ans) %><br>	
 				<% end %>
-		</td> 	
+		</td> 
+			<%# @survey.Attemptsurvey(:question_id=>q.id).group(:question_id,:answer).count.each do |key,value| %>
+			<%#= value%>
+			<%#end%>
  	</tr>
 <% end %>
 </table>

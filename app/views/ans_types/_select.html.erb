@@ -5,7 +5,7 @@
  <div class="panel-body">
 
 
-   <%= f.select :answer_option , answer.answer_option.split('\n') , {:prompt => "--Select--"}  %>
+   <%= f.select :answer_option , answer.answer_option.split('\n') , {:prompt => "--Select--"} , required: true %>
   <br>
 
 </div>

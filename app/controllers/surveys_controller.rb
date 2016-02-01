@@ -44,7 +44,7 @@ class SurveysController < ApplicationController
   # POST /surveys.json
   def create
     @survey = Survey.new(params[:survey])
-    @survey.questions.build
+    #@survey.questions.build
 
     respond_to do |format|
       if @survey.save
